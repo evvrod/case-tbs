@@ -1,0 +1,14 @@
+.menu {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.signup {
+  color: var(--color-white);
+  white-space: nowrap;
+}
+.signin {
+  color: var(--color-secondary);
+  white-space: nowrap;
+}

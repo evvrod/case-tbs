@@ -1,0 +1,1 @@
+export { MyLink as Link } from './ui/Link/Link';

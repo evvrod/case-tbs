@@ -1,0 +1,10 @@
+.link {
+  color: var(--color-thirdly);
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
