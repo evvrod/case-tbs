@@ -1,0 +1,42 @@
+:root {
+  --color-primary: #f6e828;
+  --color-primary-rgb: 246, 232, 40;
+  --color-secondary: #53b3b2;
+  --color-secondary-rgb: 83, 179, 178;
+  --color-thirdly: #ff579c;
+  --color-thirdly-rgb: 255, 87, 156;
+  --color-background: #333333;
+  --color-slide-background: #2e2e2e;
+
+  --color-white: #ffffff;
+}
+
+html,
+body {
+  max-width: 100vw;
+
+  --text-h1: bold 50px var(--font-futura-pt-cond-bold);
+  --text-h2: bold 36px var(--font-futura-pt-cond-bold);
+  --text-h3: 24px var(--font-futura-pt-cond-bold);
+  --text: 18px var(--font-roboto);
+
+  --width-content: 1280px;
+}
+
+body {
+  font: var(--text);
+  color: var(--color-white);
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--color-background);
+  color: var(--color-white);
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+

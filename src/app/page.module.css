@@ -1,0 +1,7 @@
+.title {
+  font: var(--text-h2);
+}
+
+.text {
+  padding: 10px 0;
+}
