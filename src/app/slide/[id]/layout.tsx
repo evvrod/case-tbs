@@ -4,12 +4,12 @@ import Slide from '@/4 widgets/Slide/index';
 
 const MAX_SLIDE = 10;
 
-interface LayoutProps {
-  params: { id: string };
+interface ILayoutProps {
+  params: Promise<{ id: string }>;
 }
 
-export default async function Layout({ params }: LayoutProps) {
-  const { id } = await params;
+export default async function Layout(props: ILayoutProps) {
+  const { id } = await props.params;
   const currentSlide = Number(id);
 
   if (isNaN(currentSlide) || currentSlide < 1 || currentSlide > MAX_SLIDE) {
