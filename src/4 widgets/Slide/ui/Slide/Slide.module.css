@@ -1,0 +1,10 @@
+.slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  height: 700px;
+  width: 1240px;
+
+  background-color: var(--color-slide-background);
+}
