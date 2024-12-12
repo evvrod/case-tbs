@@ -9,21 +9,27 @@
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format": "prettier --check ./src",
-    "format:fix": "prettier --write ./src"
+    "format:fix": "prettier --write ./src",
+    "prisma:generate": "npx prisma generate",
+    "prisma:migrate": "npx prisma migrate dev",
+    "prisma:migrate:deploy": "npx prisma migrate deploy",
+    "prisma:check": "npx prisma studio"
   },
   "dependencies": {
-    "next": "15.0.2",
-    "react": "19.0.0-rc-02c0e824-20241028",
-    "react-dom": "19.0.0-rc-02c0e824-20241028"
+    "@prisma/client": "^6.0.1",
+    "next": "15.1.0",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
   },
   "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
+    "@types/node": "^20.17.10",
+    "@types/react": "^18.3.16",
+    "@types/react-dom": "^18.3.5",
     "eslint": "^8",
-    "eslint-config-next": "15.0.2",
+    "eslint-config-next": "15.1.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-react-compiler": "^19.0.0-beta-63b359f-20241101",
-    "typescript": "^5"
+    "eslint-plugin-react-compiler": "^19.0.0-beta-df7b47d-20241124",
+    "prisma": "^6.0.1",
+    "typescript": "^5.7.2"
   }
 }
