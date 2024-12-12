@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("POSTGRES_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model User {
+  id        Int    @id @default(autoincrement())
+  email     String @unique
+  password  String
+  createdAt String
+  updatedAt String
+}
+
+model Slide {
+  id        Int    @id @default(autoincrement())
+  number    Int    @unique
+  type      String
+}
