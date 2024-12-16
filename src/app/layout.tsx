@@ -4,6 +4,9 @@ import Header from '@/4 widgets/Header/index';
 import Footer from '@/4 widgets/Footer/index';
 import Main from '@/4 widgets/Main/index';
 
+import { logger } from '@/5 features/Logger/index.server';
+import { CustomError } from '@/5 features/Logger/index';
+
 import './globals.css';
 
 const robotoNormal = localFont({
@@ -25,13 +28,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`${robotoNormal.variable} ${futuraCondBold.variable}`}>
-        <Header />
-        <Main>{children}</Main>
-        <Footer />
-      </body>
-    </html>
-  );
+  try {
+    return (
+      <html lang="en">
+        <body className={`${robotoNormal.variable} ${futuraCondBold.variable}`}>
+          <Header />
+          <Main>{children}</Main>
+          <Footer />
+        </body>
+      </html>
+    );
+  } catch (error) {
+    logger.info('!!!!!!!!!!!!!!!!!!!!!');
+    if (error instanceof CustomError) {
+      logger.error(error);
+    } else {
+      logger.error(
+        new CustomError({
+          message: 'Unknown error',
+        }),
+      );
+    }
+  }
 }

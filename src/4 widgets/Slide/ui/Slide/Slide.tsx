@@ -9,7 +9,6 @@ interface SlideProps {
 
 export function Slide(props: SlideProps) {
   const { currentSlide, children } = props;
-  
   return (
     <div className={styles.slide}>
       <SlideMain currentSlide={currentSlide}>{children}</SlideMain>

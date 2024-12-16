@@ -2,7 +2,7 @@
   "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
   "plugins": ["react-compiler"],
   "rules": {
-    "no-console": "error",
+    // "no-console": "error",
     "max-lines-per-function": [
       "error",
       {

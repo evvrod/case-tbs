@@ -1,12 +1,16 @@
+import { cookies } from 'next/headers';
+
 import styles from './not-found.module.css';
 
-export default function Page() {
+export default async function NotFound() {
+  const currentUrl = (await cookies()).get('currentUrl')?.value;
+
   return (
     <div className={styles.content}>
       <div className={styles.text}>
         <p className={styles.code}>404</p>
         <span> | </span>
-        <pattern>This page could not be found.</pattern>
+        <p>This page ${currentUrl} could not be found.</p>
       </div>
     </div>
   );
