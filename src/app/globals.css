@@ -9,6 +9,7 @@
   --color-slide-background: #2e2e2e;
 
   --color-white: #ffffff;
+  --color-black: #2e2e2e;
 }
 
 html,
@@ -18,6 +19,7 @@ body {
   --text-h1: bold 50px var(--font-futura-pt-cond-bold);
   --text-h2: bold 36px var(--font-futura-pt-cond-bold);
   --text-h3: 24px var(--font-futura-pt-cond-bold);
+  --text-b: 20px var(--font-roboto);
   --text: 18px var(--font-roboto);
 
   --width-content: 1280px;
@@ -38,5 +40,3 @@ body {
   padding: 0;
   margin: 0;
 }
-
-

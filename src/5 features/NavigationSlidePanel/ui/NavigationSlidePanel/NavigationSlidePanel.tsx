@@ -1,17 +1,22 @@
+'use client';
+
 import Link from 'next/link';
 import NavButton from '../NavButton/NavButton';
 
-import styles from './NavigationSlidePanel.module.css';
+import { useNavigationSlidePanelHandlers } from './useNavigationSlidePanelHandlers';
 
-interface INavigationSlidePanelProps {
-  currentSlide: number;
+import styles from './NavigationSlidePanel.module.css';
+import { SlideType } from '@prisma/client';
+
+interface INavigationSlidePanelProps{
+  slideId: number;
+  isCompleted?: boolean;
+  slideType: SlideType;
 }
 
 export function NavigationSlidePanel(props: INavigationSlidePanelProps) {
-  const { currentSlide } = props;
-
-  const prevSlide = currentSlide > 1 ? currentSlide - 1 : 1;
-  const nextSlide = currentSlide + 1;
+  const { prevSlide, nextSlide, currentSlide, isTaskSlide, isCompleteTask } =
+    useNavigationSlidePanelHandlers(props);
 
   return (
     <div className={styles.navigation}>
@@ -19,8 +24,14 @@ export function NavigationSlidePanel(props: INavigationSlidePanelProps) {
         <NavButton type={'PREV'} />
       </Link>
       <span className={styles.currentSlide}>Slide {currentSlide}</span>
-      <Link href={`/slide/${nextSlide}`}>
-        <NavButton type={'NEXT'} />
+
+      <Link
+        href={`/slide/${nextSlide}`}
+        style={{
+          visibility: isTaskSlide && !isCompleteTask ? 'hidden' : 'visible',
+        }}
+      >
+        <NavButton type="NEXT" />
       </Link>
     </div>
   );
