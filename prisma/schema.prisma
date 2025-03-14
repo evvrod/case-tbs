@@ -9,15 +9,106 @@ datasource db {
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
+  id        String @id @default(uuid())
   email     String @unique
   password  String
-  createdAt String
-  updatedAt String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  progress       UserProgress[]
+  taskProgress   TaskProgress[] 
+}
+
+model UserProgress {
+  id              String    @id @default(uuid())
+  userId          String    @unique  
+  currentSlideId  Int?
+  totalScore      Int       @default(0)
+  completedSlides Int       @default(0)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  user            User   @relation(fields: [userId], references: [id])
+  slide           Slide? @relation(fields: [currentSlideId], references: [id])
 }
 
 model Slide {
-  id        Int    @id @default(autoincrement())
-  number    Int    @unique
-  type      String
+  id        Int   @id
+  title     String
+  type      SlideType
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  taskId    String? 
+
+  task      Task?    @relation("TaskToSlide", fields: [taskId], references: [id])
+  userProgresses UserProgress[]
+}
+
+enum SlideType {
+  INF
+  TASK
+  NAV
+}
+
+model Task {
+  id        String   @id @default(uuid())
+  type      TaskType
+  score     Int
+  attempts  Int 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  slides    Slide[]  @relation("TaskToSlide") 
+  videoQuestion  VideoQuestionTask? @relation("TaskToVideoQuestionTask")
+  dragAndDrop    DAndDTask? @relation("TaskToDAndDTask")
+  progress       TaskProgress[]
+}
+
+enum TaskType {
+  VIDEO_QUESTION
+  CHART_QUESTION
+  DRAG_AND_DROP
+}
+
+model VideoQuestionTask {
+  id             String   @id @default(uuid())
+  taskId         String   @unique
+  title          String
+  question       String
+  options        String[]
+  correctOption  Int
+
+  task           Task @relation("TaskToVideoQuestionTask", fields: [taskId], references: [id])
+}
+
+model DAndDTask {
+  id             String   @id @default(uuid())
+  taskId         String   @unique
+  question       String
+  options        Json
+  correctOption  Int
+
+  task           Task @relation("TaskToDAndDTask", fields: [taskId], references: [id])
+}
+
+model TaskProgress {
+  id           String   @id @default(uuid())
+  userId       String
+  taskId       String
+  attempt      Int?
+  status       TaskStatus
+  attempts     Json[]
+  score        Int?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+  task Task @relation(fields: [taskId], references: [id])
+
+  @@unique([userId, taskId]) 
+}
+
+enum TaskStatus {
+  IN_PROGRESS
+  COMPLETED
 }

@@ -1,1 +1,1 @@
-export { Slide as default } from './ui/Slide/Slide';
+export { SlideContent } from './ui/Slide/SlideContent';
