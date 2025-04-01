@@ -36,6 +36,15 @@ export async function getSlide(id: number): Promise<SlideWithError> {
                 correctOption: true,
               },
             },
+            dragAndDrop: {
+              select: {
+                id: true,
+                taskId: true,
+                question: true,
+                options: true,
+                correctOption: true,
+              },
+            },
           },
         },
       },
@@ -72,6 +81,15 @@ export type SlideWithRelations = Prisma.SlideGetPayload<{
             id: true;
             taskId: true;
             title: true;
+            question: true;
+            options: true;
+            correctOption: true;
+          };
+        };
+        dragAndDrop: {
+          select: {
+            id: true;
+            taskId: true;
             question: true;
             options: true;
             correctOption: true;

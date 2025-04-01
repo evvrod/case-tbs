@@ -7,6 +7,8 @@ import { VideoQuestion } from '@/5 features/videoQuestion/index';
 import { getSlide } from '@/6 entities/Slide/index';
 import { getTaskProgressOrCreate } from '@/6 entities/TaskProgress/index';
 
+import { DNDQuestion } from '@/5 features/DNDQuestion/ui/DNDQuestion/DNDQuestion';
+
 interface IPageProps {
   params: Promise<{ id: string }>;
 }
@@ -37,6 +39,10 @@ export default async function Page(props: IPageProps) {
         {slide.data.task.videoQuestion && (
           <VideoQuestion slide={slide.data} taskProgress={taskProgress.data} />
         )}
+
+        {slide.data.task.dragAndDrop && (
+          <DNDQuestion slide={slide.data} taskProgress={taskProgress.data} />
+        )}
       </SlideContent>
     );
   }
@@ -44,7 +50,7 @@ export default async function Page(props: IPageProps) {
   if (slide.data.type === 'INF' || slide.data.type === 'NAV') {
     return (
       <SlideContent slideId={slide.data.id} slideType={slide.data.type}>
-        <div>!!!</div>
+        <div> Slide </div>
       </SlideContent>
     );
   }

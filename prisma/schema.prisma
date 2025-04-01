@@ -86,7 +86,7 @@ model DAndDTask {
   taskId         String   @unique
   question       String
   options        Json
-  correctOption  Int
+  correctOption  Json
 
   task           Task @relation("TaskToDAndDTask", fields: [taskId], references: [id])
 }
